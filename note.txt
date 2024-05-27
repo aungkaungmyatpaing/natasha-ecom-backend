@@ -1,0 +1,106 @@
+--------------------------------------------
+order_status
+--------------------------------------------
+pending
+confirm
+processing
+delivered
+finish
+cancel
+--------------------------------------------
+--------------------------------------------
+is banned
+--------------------------------------------
+0 => unbanned,
+1 => banned,
+--------------------------------------------
+--------------------------------------------
+payment_method
+--------------------------------------------
+cash
+cos
+--------------------------------------------
+payment
+--------------------------------------------
+0 => unactive
+1 => active
+--------------------------------------------
+stock
+--------------------------------------------
+0 => outofstock
+1 => instock
+--------------------------------------------
+currecy
+
+currecy rate when update
+currecy rate when update
+
+--------------------------------------------
+currecy rate
+--------------------------------------------
+usd => mmk
+usd => baht
+usd => yen
+
+mmk => usd
+mmk => baht
+mmk => yen
+
+baht => usd
+baht => mmk
+baht => yen
+
+yen => usd
+yen => mmk
+yen => baht
+
+--------------------------------------------
+product
+--------------------------------------------
+product price ( mmk , usd , baht , yen )
+
+logic
+
+if product_price_currency = usd
+mmk =>
+baht =>
+yen =>
+
+if product_price_currency = mmk
+usd =>
+
+--------------------------------------------
+product
+--------------------------------------------
+1 usd => 1000 mmk
+1 mmk => 1/1000 usd
+
+1 mmk => 0.001 usd
+1 usd => 1 / 0.001
+
+////////////////////
+front =>  must be "1"
+direct => *
+inverse => /
+////////////////////
+from primaryunit to other unit
+
+1.check primary unit , change other unit => currecy rate create or edit
+
+
+product create
+1.check primary unit
+2.added other unit , to get formula => currencyRate::where('from',primary_unit)->where('to',unit_price::product)->get()
+
+product primary unit
+product::where('primary_unit',$unit)->get();
+
+
+primary_unit => mmk
+--------------------------------------------
+baht => usd
+
+$units = {a , b ,c}
+
+whereNotIn($inputUnit,$units)->get();
+--------------------------------------------------
